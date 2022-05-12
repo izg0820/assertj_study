@@ -40,14 +40,49 @@ public class exceptionSample {
         });
     }
 
+    /*
+     * 자주 쓰는 Exception의 제외하고는 assertThatThrownBy로 받는다
+     * Exception의 type check 가능 (isInstanceOf)
+     * Exception message에 대해서도 check 가능 (hasMessageContaining)
+     * 메시지의 시작, 끝, 문자 포함여부도 check 가능
+     * */
     @Test
     public void assertThatThrownBySample() {
         assertThatThrownBy(() -> {
             List<String> list = Arrays.asList("One", "Two");
             list.get(2);
         }).isInstanceOf(IndexOutOfBoundsException.class)
-                .hasMessageContaining("Index: \\d+, Size: \\d+");
+                .hasMessage("2");
+    }
 
+    @Test
+    public void when과then의_분리() {
+        Throwable throwable = catchThrowable(() -> {
+            int a = 2 / 0;
+        });
+        assertThat(throwable).isInstanceOf(ArithmeticException.class);
+    }
+
+    /*
+    * 발생한 exception의 원인(cause)에 대해서도 check 가능
+    * */
+    @Test
+    public void cause() {
+        NullPointerException cause = new NullPointerException("1");
+        RuntimeException exception = new RuntimeException("2", cause);
+
+        assertThat(exception).hasCauseInstanceOf(NullPointerException.class);
+    }
+
+    /*
+    * 어떤 Exception이 발생했는지 먼저 쓰는게 가능하다.
+    * */
+    @Test
+    public void Exception타입_먼저() {
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> {
+                    throw new RuntimeException((new IllegalArgumentException("cause")));
+                }).havingCause()
+                .withMessage("cause");
     }
 
 }
