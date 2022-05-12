@@ -40,4 +40,14 @@ public class exceptionSample {
         });
     }
 
+    @Test
+    public void assertThatThrownBySample() {
+        assertThatThrownBy(() -> {
+            List<String> list = Arrays.asList("One", "Two");
+            list.get(2);
+        }).isInstanceOf(IndexOutOfBoundsException.class)
+                .hasMessageContaining("Index: \\d+, Size: \\d+");
+
+    }
+
 }
