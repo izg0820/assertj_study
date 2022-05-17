@@ -14,7 +14,7 @@ public class asSample {
     @Test
     public void as() {
         String sample = "1|2|3";
-        assertThat(sample.split("\\|")).containsExactly("4").as("여기에다가 쓰면 동작 X");
+        assertThat(sample.split("\\|")).containsExactly("3").as("여기에다가 쓰면 동작 X");
         assertThat(sample.split("\\|")).as("테스트1").containsExactly("1","2","3");
         assertThat(sample.split("\\|")).as("테스트2").contains("1");
     }
