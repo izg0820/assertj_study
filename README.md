@@ -20,3 +20,7 @@ https://velog.io/@sdb016/AssertJ-%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9%EB%B2%95
 
 5. is 참조  
 https://www.baeldung.com/assertj-conditions
+
+
+6. extracting 참조  
+   https://velog.io/@sdb016/AssertJ-%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9%EB%B2%95
